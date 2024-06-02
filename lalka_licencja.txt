@@ -1,0 +1,163 @@
+Wolnej Sztuki License1.3
+
+[Copyleft Attitude]
+
+Licencja Wolnej Sztuki 1.3 (FAL 1.3)
+
+§ Preambuła
+
+Licencja Wolnej Sztuki przyznaje prawo do swobodnego kopiowania, rozpowszechniania i przekształcania twórczości bez naruszania praw autorskich.
+
+Licencja Wolnej Sztuki uznaje i chroni powyższe prawa. Ich wdrożenie zostało zredagowane w celu umożliwienia wszystkim korzystania z dzieł ludzkiego umysłu w sposób twórczy, niezależnie od ich rodzajów i form wyrazu.
+
+Powszechny dostęp do dzieł ludzkiego umysłu, zwykle ograniczony przez obowiązujące prawa autorskie, jest preferowany przez licencję Wolnej Sztuki. Licencja ta ma na celu umożliwienie wykorzystania dzieła, w celu ustalenia nowych warunków, zwiększających możliwości tworzenia. Licencja Wolnej Sztuki przyznaje prawo do korzystania z utworu; uznaje prawo właściciela praw autorskich oraz prawa i obowiązki użytkownika.
+
+Wynalazek i rozwój technologii cyfrowych, Internetu i Wolnego Oprogramowania zmieniły metody tworzenia. Dzieła ludzkiego umysłu mogą być dystrybuowane, wymieniane, i przekształcane. Pozwala to na tworzenie wspólnych dzieł, do których każdy może wnieść swój wkład z korzyścią dla wszystkich.
+
+Głównym powodem działania Licencji Wolnej Sztuki jest promowanie i ochrona dzieł ludzkiego umysłu, zgodnie z zasadami Copyleft: swoboda używania, kopiowania, rozpowszechniania, przekształcania oraz zakaz wyłącznego asygnowania.
+
+§ Definicje
+
+„Dzieło” oznacza zarówno „dzieło początkowe”, jak i kolejne „dzieła pokrewne” lub „dzieło wspólne”, i tak:
+
+„Dzieło początkowe” oznacza dzieło stworzone przez inicjatora dzieła wspólnego (autora), którego kopie mogą być modyfikowane przez wszystkich chętnych.
+
+„Dzieła pokrewne” oznaczają wkłady wniesione przez autorów, którzy uczestniczą w rozwoju dzieła wspólnego poprzez korzystanie z prawa do kopiowania, rozpowszechniania i przekształcania działa początkowego, przyznanego na podstawie niniejszej licencji.
+
+„Dzieło wspólne” oznacza zarówno „dzieło początkowe”, jak i wszystkie „dzieła pokrewne” (oryginały i kopie).
+
+„Oryginały” (źródła i zasoby dzieła) oznaczają wszystkie kopie dzieła początkowego lub kolejnych dzieł pokrewnych, oznaczone datą i wykorzystywane przez ich autora (autorów) jako odniesienie przy kolejnych aktualizacjach, interpretacjach, kopiach lub reprodukcjach.
+
+„Kopia” oznacza każdą reprodukcję oryginału w rozumieniu niniejszej licencji.
+
+§ 1 PRZEDMIOT
+
+Celem tej licencji jest określenie warunków, na jakich można swobodnie korzystać z tego dzieła.
+
+§ 2 ZAKRES
+
+Niniejsze dzieło podlega prawu autorskiemu. Dzięki tej licencji jej autor określa, w jakim stopniu możliwe jest kopiowanie, rozpowszechnianie i przekształcanie dzieła.
+
+§ 2.1 PRAWO DO SWOBODNEGO KOPIOWANIA
+
+Masz prawo do kopiowania tego dzieła dla siebie, znajomych lub innych osób, niezależnie od zastosowanej techniki.
+
+§ 2.2 PRAWO DO SWOBODNEGO ROZPOWSZECHNIANIA, DO PUBLICZNEGO PREZENTOWANIA
+
+Masz prawo do rozpowszechniania kopii tego dzieła, zmodyfikowanej bądź nie, niezależnie od rodzaju nośnika oraz miejsca, za opłatą lub bez, pod warunkiem, że:
+
+– załączysz tę licencję bez dokonywania żadnych zmian w jej kopii lub wskażesz dokładnie, gdzie licencję można znaleźć;
+
+– przedstawisz odbiorcy nazwiska autora (autorów) oryginałów, w tym siebie jeśli dokonywałeś zmian w dziele;
+
+-poinformujesz odbiorcę, gdzie znajdują się oryginały (w wersji pierwotnej lub późniejszej).
+
+Autorzy oryginałów, jeżeli zechcą, mogą przekazać Ci prawo do rozpowszechniania oryginałów na takich samych warunkach co kopii.
+
+§ 2.3 PRAWO DO SWOBODNEGO PRZEKSZTAŁCANIA
+
+Masz prawo do przekształcania kopii oryginałów (w wersji pierwotnej bądź późniejszej), pod warunkiem, że:
+
+– spełnisz wszystkie warunki określone powyżej w punkcie 2.2, jeżeli rozpowszechniasz przekształcone kopie;
+
+– zaznaczysz, że dzieło zostało przekształcone i, jeśli to możliwe, jakie zmiany zostały dokonane;
+
+– będziesz rozpowszechniać kolejne dzieła na tej samej licencji lub licencji kompatybilnej.
+
+Autor / autorzy dzieła pierwotnego mogą przekazać Ci prawo do modyfikacji tychże dzieł na takich samych warunkach co kopii.
+
+§ 3 PRAWA POKREWNE
+
+Działania podnoszące prawa autorskie i prawa pokrewne nie podważają praw przyznanych przez niniejszą licencję.
+
+Jest to powód, dla którego na przykład występy muszą podlegać tej samej licencji lub licencji kompatybilnej. Również włączenie dzieła do bazy danych, kompilacji lub antologii nie stanowi przeszkody do korzystania z dzieła na takich samych warunkach jak te określone w niniejszej licencji.
+
+§ 4 WŁĄCZENIE DZIEŁA
+
+Włączenie niniejszego dzieła do większego dzieła, które nie podlega licencji Wolnej Sztuki nie podważa praw przyznanych przez tą licencję.
+
+Jeżeli dostęp do dzieła nie jest już możliwy, za wyjątkiem dostępu do większego dzieła, którego jest częścią, wtedy włączenie będzie dozwolone pod warunkiem, że większe dzieło podlega licencji Wolnej Sztuki lub licencji kompatybilnej.
+
+§ 5 ZGODNOŚĆ
+
+Licencja jest kompatybilna z licencją Wolnej Sztuki, pod warunkiem, że:
+
+– daje prawo do kopiowania, rozpowszechniania i przekształcania kopii dzieła, w tym również do celów komercyjnych i bez żadnych innych ograniczeń niż te wymagane przez pozostałe kryteria zgodności;
+
+– zapewnia odpowiednią informacją o autorstwie dzieła i jeśli to możliwe dostęp do poprzednich wersji;
+
+– uznaje licencję Wolnej Sztuki za kompatybilną (jest z nią kompatybilne);
+
+– wymaga, aby zmiany dokonywane w dziele podlegały tej samej licencji lub licencji, która spełnia powyższe kryteria zgodności.
+
+§ 6. PRAWO WŁASNOŚCI INTELEKTUALNEJ
+
+Niniejsza licencja nie ma na celu umniejszenia Twoich praw autorskich lub praw pokrewnych. Decydując się na wspieranie rozwoju wspólnego dzieła, wyrażasz jedynie zgodę na przyznanie innym takich samych praw w odniesieniu do Twojego wkładu, jakie zostały przyznane Tobie przez niniejszą licencję. Przyznanie tych praw nie jest równoznaczne z rezygnacją z prawa własności intelektualnej.
+
+§ 7. ODPOWIEDZIALNOŚĆ
+
+Wolność do korzystania z dzieła zgodnie z założeniami Licencji Wolnej Sztuki (prawo do kopiowania, rozpowszechniania i przekształcanie) zakłada, że każdy jest odpowiedzialny za własne czyny.
+
+§ 8. CZAS TRWANIA LICENCJI
+
+Niniejsza licencja wchodzi w życie z chwilą akceptacji jej warunków. Akt kopiowania, rozpowszechniania lub dystrybucji dzieła jest równoznaczny z wyrażeniem zgody na warunki licencji. Niniejsza licencja pozostaje w mocy dopuki prawo autorskie do tego dzieła nie wygaśnie. Jeśli nie szanujesz warunków niniejszej licencji, automatycznie tracisz prawa, które ona przyznaje.
+
+Jeżeli statusu prawny lub prawo, któremu podlegasz uniemożliwia Ci przestrzeganie warunków niniejszej licencji, nie możesz również korzystać z praw, które ona przynosi.
+
+§ 9. RÓŻNE WERSJE LICENCJI
+
+Niniejsza licencja może przechodzić okresowe zmiany, prowadzające do jej ulepszenia, dokonywane przez jej autorów (inicjatorów ruchu « Copyleft Attitude »), w postaci nowych, ponumerowanych wersji.
+
+Zawsze masz możliwość wyboru: przyjąć warunki, dołączone do kopii dzieła, które otrzymałeś lub skorzystać z przepisów jednej z kolejnych wersji.
+
+§ 10. PODLICENCJE
+
+Niniejsza licencja nie aprobuje żadnych podlicencji. Każda osoba pragnąca skorzystać z praw, które ona przyznaje będzie bezpośrednio związany z autorami wspólnego dzieła.
+
+§ 11. RAMY PRAWNE
+
+Niniejsza licencja została sporządzona zarówno w odniesieniu do prawa francuskiego jak i konwencji berneńskiej o ochronie dzieł literackich i artystycznych.
+
+PODRĘCZNIK UŻYTKOWNIKA
+
+Jak korzystać z Licencji Wolnej Sztuki?
+
+Aby skorzystać z Licencji Wolnej Sztuki, wystarczy opatrzyć swoje dzieło w następującym opisem:
+
+[Nazwa autora, tytuł, data powstania dzieła. Jeśli stosowne, nazwiska autorów wspólnego dzieła oraz, jeżeli to możliwe, gdzie znajdują się oryginały].
+
+Copyleft: To dzieło jest darmowe, możesz je kopiować, rozpowszechniać i przekształcać na warunkach Licencji Wolnej Sztuki https://artlibre.org/licence/lal/pl/
+
+Dlaczego warto korzystać z Licencji Wolnej Sztuki?
+
+1. Aby dać jak największej liczbie ludzi dostęp do Twojego dzieła.
+
+2. Aby pozwolić na jego darmową dystrybucję.
+
+3. Aby pozwolić na jego rozwój, zezwalając na kopiowanie, rozpowszechnianie i przekształcanie przez innych.
+
+4. Abyś mógł korzystać z zasobów dzieła, które jest objęte Licencją Wolnej Sztuki; abyś mógł kopiować, rozpowszechniać lub przekształcić je za darmo.
+
+5. Ale również dlatego, że Licencja Wolnej Sztuki oferuje ramy prawne, które uniemożliwiają jakiekolwiek przywłaszczenie dzieła. Zabrania się bowiem przywłaszczania swojego dzieła z pominięciem procesu twórczego będącego czyjąś wyłączną własnością.
+
+Kiedy korzystać z licencji Wolnej Sztuki?
+
+Za każdym razem, gdy chcesz skorzystać lub dać innym możliwość skorzystania z prawa do kopiowania, rozpowszechniania i przekształcania twórczości bez zastrzegania środków, powinieneś użyć Licencji Wolnej Sztuki. Można na przykład używać jej w projektach naukowych, artystycznych i edukacyjnych.
+
+Jakie prace mogą być przedmiotem Licencji Wolnej Sztuki?
+
+Licencja Wolnej Sztuki może być stosowana zarówno do prac cyfrowych, jak i materialnych.
+
+Możesz zastosować Licencję Wolnej Sztuki do dowolnego tekstu, obrazu, dźwięku, gestu, lub jakiejkolwiek innej rzeczy, do której posiadasz wystarczające prawa autorskie.
+
+Tło historyczne Licencji Wolnej Sztuki:
+
+Licencja Wolnej Sztuki jest wynikiem obserwacji, korzystania i tworzenia technologii cyfrowych, wolnego oprogramowania, Internetu i sztuki. Powstała podczas spotkań Copyleft Attitude, które odbyły się w Paryżu w 2000 roku. Po raz pierwszy w spotkaniach tych wzięli udział członkowie społeczności wolnego oprogramowania, artyści i przedstawiciele świata sztuki. Za cel postawiono sobie dostosowanie zasad Copyleft i Wolnego Oprogramowania do wszystkich rodzajów twórczości.
+
+http://www.artlibre.org
+
+Copyleft Attitude, 2007.
+
+Możesz kopiować i rozpowszechniać niniejszą licencji dosłownie (bez zmian).
+
+(Tłumaczenie z angielskiego: Magdalena Żydowicz, redakcja: Seweryn Siewert.)
