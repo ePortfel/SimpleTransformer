@@ -16,13 +16,13 @@ class KanalUwagi(nn.Module):
 
     def forward(self,x):
         B,T,C=x.shape
-        k=self.key(x)                                           # (B,T,C)
-        q=self.query(x)                                         # (B,T,C)
-        wei=q@k.transpose(-2,-1)*C**-0.5                        # (B, T, C) @ (B, C, T) -> (B, T, T)
-        wei=wei.masked_fill(self.tril[:T,:T]==0,float('-inf'))  # (B, T, T)
-        wei=functional.softmax(wei,dim=-1)                      # (B, T, T)
-        v=self.value(x)                                         # (B,T,C)
-        out=wei@v                                               # (B, T, T) @ (B, T, C) -> (B, T, C)
+        k=self.key(x)                                           # (B,T,K)
+        q=self.query(x)                                         # (B,T,K)
+        wei=q@k.transpose(-2,-1)*C**-0.5                        # (B,T,K) @ (B,K,T) -> (B,T,T)
+        wei=wei.masked_fill(self.tril[:T,:T]==0,float('-inf'))  # (B,T,T)
+        wei=functional.softmax(wei,dim=-1)                      # (B,T,T)
+        v=self.value(x)                                         # (B,T,K)
+        out=wei@v                                               # (B,T,T) @ (B,T,K) -> (B,T,K)
         return out
 
 class KanalyUwagi(nn.Module):
@@ -56,8 +56,10 @@ class Blok(nn.Module):
         self.ln2=nn.LayerNorm(atrybuty)
 
     def forward(self,x):
-        x=x+self.sa(self.ln1(x))
-        x=x+self.ffwd(self.ln2(x))
+        xn=self.ln1(x)
+        x=x+self.sa(xn)
+        xn=self.ln2(x)
+        x=x+self.ffwd(xn)
         return x
     
 class LLModel(nn.Module):
