@@ -5,53 +5,53 @@ import torch.nn as nn
 from torch.nn import functional
 from datetime import datetime
 
-class KanalUwagi(nn.Module):
+class ModulUwagi(nn.Module):
 
-    def __init__(self,rozmiar_kanalu):
+    def __init__(self, rozmiar_modulu):
         super().__init__()
-        self.K=rozmiar_kanalu
-        self.key=nn.Linear(config.atrybuty,rozmiar_kanalu,bias=False)
-        self.query=nn.Linear(config.atrybuty,rozmiar_kanalu,bias=False)
-        self.value=nn.Linear(config.atrybuty,rozmiar_kanalu,bias=False)
+        self.K=rozmiar_modulu
+        self.key=nn.Linear(config.atrybuty, rozmiar_modulu, bias=False)
+        self.query=nn.Linear(config.atrybuty, rozmiar_modulu, bias=False)
+        self.value=nn.Linear(config.atrybuty, rozmiar_modulu, bias=False)
         self.register_buffer('tril',torch.tril(torch.ones(config.rozmiar_bloku,config.rozmiar_bloku)))
 
     def forward(self,x):
         B,T,C=x.shape
-        k=self.key(x)                                           # (B,T,K)
-        q=self.query(x)                                         # (B,T,K)
-        wei=q@k.transpose(-2,-1)*self.K**-0.5                   # (B,T,K) @ (B,K,T) -> (B,T,T)
-        wei=wei.masked_fill(self.tril[:T,:T]==0,float('-inf'))  # (B,T,T)
-        wei=functional.softmax(wei,dim=-1)                      # (B,T,T)
-        v=self.value(x)                                         # (B,T,K)
-        out=wei@v                                               # (B,T,T) @ (B,T,K) -> (B,T,K)
+        k=self.key(x)                                           # (PORCJA,CZAS,MODUWAGI)
+        q=self.query(x)                                         # (PORCJA,CZAS,MODUWAGI)
+        wei=q@k.transpose(-2,-1)*self.K**-0.5                   # (PORCJA,CZAS,MODUWAGI) @ (PORCJA,MODUWAGI,CZAS) -> (PORCJA,CZAS,CZAS)
+        wei=wei.masked_fill(self.tril[:T,:T]==0,float('-inf'))  # (PORCJA,CZAS,CZAS)
+        wei=functional.softmax(wei,dim=-1)                      # (PORCJA,CZAS,CZAS)
+        v=self.value(x)                                         # (PORCJA,CZAS,MODUWAGI)
+        out=wei@v                                               # (PORCJA,CZAS,CZAS) @ (PORCJA,CZAS,MODUWAGI) -> (PORCJA,CZAS,MODUWAGI)
         return out
 
-class KanalyUwagi(nn.Module):
+class ModulyUwagi(nn.Module):
 
-    def __init__(self,kanaly,rozmiar_kanalu):
+    def __init__(self, moduly_uwagi, rozmiar_modulu_uwagi):
         super().__init__()
-        self.heads=nn.ModuleList([KanalUwagi(rozmiar_kanalu) for i in range(kanaly)])
+        self.heads=nn.ModuleList([ModulUwagi(rozmiar_modulu_uwagi) for i in range(moduly_uwagi)])
         self.proj=nn.Linear(config.atrybuty,config.atrybuty)
 
     def forward(self, x):
-        out=torch.cat([h(x) for h in self.heads],dim=-1)
-        out=self.proj(out)
+        out=torch.cat([h(x) for h in self.heads],dim=-1) # (PORCJA,CZAS,ATRYBUTY=MODUWAGI*LICZBAMODULOW)
+        out=self.proj(out)                               # (PORCJA,CZAS,ATRYBUTY)
         return out
 
 class FeedFoward(nn.Module):
 
     def __init__(self,atrb):
         super().__init__()
-        self.net = nn.Sequential(nn.Linear(atrb,4*atrb),nn.ReLU(),nn.Linear(4*atrb,atrb))
+        self.net = nn.Sequential(nn.Linear(atrb,config.rozmiarff*atrb),nn.ReLU(),nn.Linear(config.rozmiarff*atrb,atrb))
 
     def forward(self,x):
         return self.net(x)
 
 class Blok(nn.Module):
 
-    def __init__(self,atrybuty,kanaly):
+    def __init__(self, atrybuty, rozmiar):
         super().__init__()
-        self.sa=KanalyUwagi(kanaly,int(atrybuty/kanaly))
+        self.sa=ModulyUwagi(rozmiar, int(atrybuty / rozmiar))
         self.ffwd=FeedFoward(atrybuty)
         self.ln1=nn.LayerNorm(atrybuty)
         self.ln2=nn.LayerNorm(atrybuty)
@@ -74,7 +74,7 @@ class LLModel(nn.Module):
         self.rozmiar_slownika=rozm
         self.tablica_kodujaca_tokeny=nn.Embedding(self.rozmiar_slownika,config.atrybuty)
         self.tablica_kodujaca_pozycje=nn.Embedding(config.rozmiar_bloku,config.atrybuty)
-        self.bloki=nn.Sequential(*[Blok(config.atrybuty,kanaly=config.kanaly_uwagi) for i in range(config.warstwy)])
+        self.bloki=nn.Sequential(*[Blok(config.atrybuty, rozmiar=config.moduly_uwagi) for i in range(config.warstwy)])
         self.normalizator=nn.LayerNorm(config.atrybuty)
         self.linear=nn.Linear(config.atrybuty,self.rozmiar_slownika)
 
@@ -90,8 +90,8 @@ class LLModel(nn.Module):
             strata=None
         else:
             B,T,C=logits.shape
-            logits=logits.view(B*T,C)
-            targets=targets.view(B*T)
+            logits=logits.view(B*T,C) # (PORCJA*CZAS,SLOWNIK)
+            targets=targets.view(B*T) # (PORCJA*CZAS)
             strata=functional.cross_entropy(logits,targets)
         return logits,strata
 
