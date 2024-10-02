@@ -31,10 +31,10 @@ class ModulyUwagi(nn.Module):
     def __init__(self, moduly_uwagi, rozmiar_modulu_uwagi):
         super().__init__()
         self.heads=nn.ModuleList([ModulUwagi(rozmiar_modulu_uwagi) for i in range(moduly_uwagi)])
-        self.proj=nn.Linear(config.atrybuty,config.atrybuty)
+        self.proj=nn.Linear(moduly_uwagi*rozmiar_modulu_uwagi,config.atrybuty)
 
     def forward(self, x):
-        out=torch.cat([h(x) for h in self.heads],dim=-1) # (PORCJA,CZAS,ATRYBUTY=MODUWAGI*LICZBAMODULOW)
+        out=torch.cat([h(x) for h in self.heads],dim=-1) # (PORCJA,CZAS,MODUWAGI*LICZBAMODULOW)
         out=self.proj(out)                               # (PORCJA,CZAS,ATRYBUTY)
         return out
 
@@ -51,7 +51,7 @@ class Blok(nn.Module):
 
     def __init__(self, atrybuty, rozmiar):
         super().__init__()
-        self.sa=ModulyUwagi(rozmiar, int(atrybuty / rozmiar))
+        self.sa=ModulyUwagi(rozmiar, config.rozmiarmu)
         self.ffwd=FeedFoward(atrybuty)
         self.ln1=nn.LayerNorm(atrybuty)
         self.ln2=nn.LayerNorm(atrybuty)
