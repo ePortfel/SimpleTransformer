@@ -72,17 +72,17 @@ class LLModel(nn.Module):
         super().__init__()
         self.device=dev
         self.rozmiar_slownika=rozm
-        self.tablica_kodujaca_tokeny=nn.Embedding(self.rozmiar_slownika,config.atrybuty)
-        self.tablica_kodujaca_pozycje=nn.Embedding(config.rozmiar_bloku,config.atrybuty)
+        self.osadzenie_tokenow=nn.Embedding(self.rozmiar_slownika, config.atrybuty)
+        self.osadzenie_pozycji=nn.Embedding(config.rozmiar_bloku, config.atrybuty)
         self.bloki=nn.Sequential(*[Blok(config.atrybuty, rozmiar=config.moduly_uwagi) for i in range(config.warstwy)])
         self.normalizator=nn.LayerNorm(config.atrybuty)
         self.linear=nn.Linear(config.atrybuty,self.rozmiar_slownika)
 
     def forward(self,idx,targets=None):
         B,T=idx.shape
-        kodowane_litery=self.tablica_kodujaca_tokeny(idx)
-        kodowane_pozycje=self.tablica_kodujaca_pozycje(torch.arange(T,device=self.device))
-        x=kodowane_litery+kodowane_pozycje
+        wektory_liter=self.osadzenie_tokenow(idx)
+        wektory_pozycji=self.osadzenie_pozycji(torch.arange(T, device=self.device))
+        x=wektory_liter+wektory_pozycji
         x=self.bloki(x)
         x=self.normalizator(x)
         logits=self.linear(x)
