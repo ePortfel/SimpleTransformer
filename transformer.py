@@ -7,8 +7,9 @@ from datetime import datetime
 
 class ModulUwagi(nn.Module):
 
-    def __init__(self, rozmiar_modulu):
+    def __init__(self, rozmiar_modulu, maska=False):
         super().__init__()
+        self.maska=maska
         self.K=rozmiar_modulu
         self.key=nn.Linear(config.atrybuty, rozmiar_modulu, bias=False)
         self.query=nn.Linear(config.atrybuty, rozmiar_modulu, bias=False)
@@ -17,20 +18,21 @@ class ModulUwagi(nn.Module):
 
     def forward(self,x):
         B,T,C=x.shape
-        k=self.key(x)                                           # (PORCJA,CZAS,MODUWAGI)
-        q=self.query(x)                                         # (PORCJA,CZAS,MODUWAGI)
-        wei=q@k.transpose(-2,-1)*self.K**-0.5                   # (PORCJA,CZAS,MODUWAGI) @ (PORCJA,MODUWAGI,CZAS) -> (PORCJA,CZAS,CZAS)
-        wei=wei.masked_fill(self.tril[:T,:T]==0,float('-inf'))  # (PORCJA,CZAS,CZAS)
-        wei=functional.softmax(wei,dim=-1)                      # (PORCJA,CZAS,CZAS)
-        v=self.value(x)                                         # (PORCJA,CZAS,MODUWAGI)
-        out=wei@v                                               # (PORCJA,CZAS,CZAS) @ (PORCJA,CZAS,MODUWAGI) -> (PORCJA,CZAS,MODUWAGI)
+        k=self.key(x)                                               # (PORCJA,CZAS,MODUWAGI)
+        q=self.query(x)                                             # (PORCJA,CZAS,MODUWAGI)
+        wei=q@k.transpose(-2,-1)*self.K**-0.5                       # (PORCJA,CZAS,MODUWAGI) @ (PORCJA,MODUWAGI,CZAS) -> (PORCJA,CZAS,CZAS)
+        if self.maska:
+            wei=wei.masked_fill(self.tril[:T,:T]==0,float('-inf'))  # (PORCJA,CZAS,CZAS)
+        wei=functional.softmax(wei,dim=-1)                          # (PORCJA,CZAS,CZAS)
+        v=self.value(x)                                             # (PORCJA,CZAS,MODUWAGI)
+        out=wei@v                                                   # (PORCJA,CZAS,CZAS) @ (PORCJA,CZAS,MODUWAGI) -> (PORCJA,CZAS,MODUWAGI)
         return out
 
 class ModulyUwagi(nn.Module):
 
     def __init__(self, moduly_uwagi, rozmiar_modulu_uwagi):
         super().__init__()
-        self.heads=nn.ModuleList([ModulUwagi(rozmiar_modulu_uwagi) for i in range(moduly_uwagi)])
+        self.heads=nn.ModuleList([ModulUwagi(rozmiar_modulu_uwagi,True) for i in range(moduly_uwagi)])
         self.proj=nn.Linear(moduly_uwagi*rozmiar_modulu_uwagi,config.atrybuty)
 
     def forward(self, x):
