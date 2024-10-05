@@ -20,3 +20,7 @@ Jeśli chcemy trenować model na własnych danych, które mamy w postaci listy p
 python konkatenator.py katalog mojkatalogplikowtxt plik mojplikdocelowy
 
 poza połączeniem plików w jeden, konkatenator odrzuci pliki napisane w alfabetach innych niż łaciński.
+
+Osadzanie tokenów w przestrzeni wektorowej dokonywane jest losowo i podlega uczeniu. Uproszczony obraz ułożenia tokenów względem siebie w przestrzeni można obejrzeć poleceniem:
+
+python modelinfo.py model lalka
