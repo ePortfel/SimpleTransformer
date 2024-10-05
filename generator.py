@@ -5,19 +5,14 @@ import config
 import transformer
 
 pliktokenow=None
-if "tokeny" in sys.argv:
-    pliktokenow=sys.argv[sys.argv.index("tokeny")+1]
-    print("Tokeny będą wczytane z pliku "+pliktokenow)
-else:
-    print("Brak wskazania pliku tokenów")
-    exit(0)
-
 plikmodelu=None
+
 if "model" in sys.argv:
-    plikmodelu=sys.argv[sys.argv.index("model")+1]
-    print("Model będzie wczytany z pliku "+plikmodelu)
+    nazwa=sys.argv[sys.argv.index("model")+1]
+    pliktokenow=nazwa+".tkn"
+    plikmodelu=nazwa+".mdl"
 else:
-    print("Brak modelu")
+    print("Brak wskazania modelu")
     exit(0)
 
 device='cuda' if torch.cuda.is_available() else 'cpu'

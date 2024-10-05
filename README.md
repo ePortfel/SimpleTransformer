@@ -7,11 +7,11 @@ Parametry modelu oraz procesu uczenia zdefiniowane w pliku config.py.
 
 Sposób użycia:
 
-python trener.py dane lalka.txt model lalka.mdl tokeny lalka.tkn
+python trener.py model lalka
 
 Wytrenuje model na pliku lalka.txt i zgra model do pliku lalka.mdl oraz tokenizację tekstu do pliku lalka.tkn. Jeśli w momencie wywołania plik modelu i tokenów istnieją, program wczyta je i będzie kontynuował trenowanie sieci.
 
-python generator.py model lalka.mdl tokeny lalka.tkn
+python generator.py model lalka
 
 Wczyta model z pliku lalka.mdl oraz tokenizację z pliku lalka.tkn. Następnie zapyta o początek tekstu, który ma dokończyć. W przypadku, gdy użytkownik nie poda niczego, model spróbuje zacząć samodzielnie.
 

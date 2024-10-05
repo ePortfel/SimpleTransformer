@@ -4,26 +4,18 @@ import torch
 
 import transformer
 
-if "dane" in sys.argv:
-    plikdanych=sys.argv[sys.argv.index("dane")+1]
-else:
-    print("Brak pliku z danymi (parametr: dane)")
-    exit(0)
-
+plikdanych=None
 plikmodelu=None
-if "model" in sys.argv:
-    plikmodelu=sys.argv[sys.argv.index("model")+1]
-    print("Model będzie zapisany do pliku "+plikmodelu)
-else:
-    print("Brak wskazania pliku do zgrania modelu")
-    exit(0)
-
 pliktokenow=None
-if "tokeny" in sys.argv:
-    pliktokenow=sys.argv[sys.argv.index("tokeny")+1]
+if "model" in sys.argv:
+    nazwa=sys.argv[sys.argv.index("model")+1]
+    plikdanych=nazwa+".txt"
+    plikmodelu=nazwa+".mdl"
+    pliktokenow=nazwa+".tkn"
+    print("Model będzie zapisany do pliku "+plikmodelu)
     print("Tokeny będą zapisane do pliku "+pliktokenow)
 else:
-    print("Brak wskazania pliku do zgrania tokenów")
+    print("Brak wskazania modelu")
     exit(0)
 
 device='cuda' if torch.cuda.is_available() else 'cpu'
