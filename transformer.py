@@ -1,4 +1,5 @@
 import config
+import random
 from tokenizer import BasicTokenizer
 import torch
 import torch.nn as nn
@@ -67,11 +68,13 @@ class Blok(nn.Module):
     
 class LLModel(nn.Module):
 
+    transformer=None
     device=None
     rozmiar_slownika=None
 
-    def __init__(self,rozm,dev):
+    def __init__(self,rozm,dev,transformer):
         super().__init__()
+        self.transformer=transformer
         self.device=dev
         self.rozmiar_slownika=rozm
         self.osadzenie_tokenow=nn.Embedding(self.rozmiar_slownika, config.atrybuty)
@@ -80,7 +83,11 @@ class LLModel(nn.Module):
         self.normalizator=nn.LayerNorm(config.atrybuty)
         self.linear=nn.Linear(config.atrybuty,self.rozmiar_slownika)
 
-    def forward(self,idx,targets=None):
+    def debugdump(self,tns,od,do):
+        tokens = [self.transformer.dekoder([id]) for id in (tns.cpu().numpy())[od:do]]
+        return "|".join(tokens)
+
+    def forward(self,idx,targets=None,ddebug=False):
         B,T=idx.shape
         wektory_liter=self.osadzenie_tokenow(idx)
         wektory_pozycji=self.osadzenie_pozycji(torch.arange(T, device=self.device))
@@ -95,6 +102,14 @@ class LLModel(nn.Module):
             logits=logits.view(B*T,C) # (PORCJA*CZAS,SLOWNIK)
             targets=targets.view(B*T) # (PORCJA*CZAS)
             strata=functional.cross_entropy(logits,targets)
+            if ddebug:
+                dumpl = 40
+                sidx = random.randint(0, max(0, len(idx) - dumpl))
+                idx=idx.view(B*T)
+                print("  Wejście: " + self.debugdump(idx,sidx,sidx+dumpl))
+                print("      Cel: " + self.debugdump(targets,sidx,sidx+dumpl))
+                predicted_labels=torch.argmax(logits,dim=1)
+                print("Predykcja: " + self.debugdump(predicted_labels,sidx,sidx+dumpl))
         return logits,strata
 
     def pisz(self,idx,dlugosc):
@@ -124,7 +139,7 @@ class Transformer:
         x = torch.stack([self.dane[i:i+config.rozmiar_bloku] for i in ix])
         y = torch.stack([self.dane[i+1:i+config.rozmiar_bloku+1] for i in ix])
         x, y = x.to(self.device), y.to(self.device)
-        return x, y
+        return x, y     # x(PORCJA,CZAS) y(PORCJA,CZAS) y przesunięte o 1 jednostkę czasu do przodu
 
     def wczytaj_model(self,pliktkn,plikmod):
         self.tokenizer=BasicTokenizer()
@@ -132,7 +147,7 @@ class Transformer:
         self.rozmiar_slownika=len(self.tokenizer.slownik())
         self.koder=self.tokenizer.koduj
         self.dekoder=self.tokenizer.dekoduj
-        model=LLModel(self.rozmiar_slownika,self.device)
+        model=LLModel(self.rozmiar_slownika,self.device,self)
         m=model.to(self.device)
         m.load_state_dict(torch.load(plikmod))
         return m
@@ -143,7 +158,7 @@ class Transformer:
         self.rozmiar_slownika=len(self.tokenizer.slownik())
         self.koder=self.tokenizer.koduj
         self.dekoder=self.tokenizer.dekoduj
-        model=LLModel(self.rozmiar_slownika,self.device)
+        model=LLModel(self.rozmiar_slownika,self.device,self)
         m=model.to(self.device)
         return m
 
@@ -163,12 +178,13 @@ class Transformer:
         print("Start: "+datetime.now().strftime("%H:%M:%S"))
 
         for krok in range(config.iteracje):
+            dumpkrok=krok%(config.iteracje/20)==0
             xb,yb=self.losuj_porcje()
-            logits,strata=m(xb,yb)
+            logits,strata=m(xb,yb,dumpkrok and config.debug)
             optimizer.zero_grad(set_to_none=True)
             strata.backward()
             optimizer.step()
-            if (krok%(config.iteracje/20)==0):
+            if (dumpkrok):
                 print("Iteracja "+str(krok)+" z "+str(config.iteracje)+" strata "+str(round(strata.item(),4)))
 
         stoptime=datetime.now()
