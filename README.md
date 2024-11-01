@@ -5,6 +5,8 @@ Model transformera do uczenia na tekstach, z użyciem biblioteki PyTorch.
 Transformer działa na tokenach będących kawałkami wyrazów. Model wylicza prawdopodobieństwa wystąpienia kolejnego tokena na podstawie fragmentu tekstu już wygenerowanego lub podanego przez użytkownika.
 Parametry modelu oraz procesu uczenia zdefiniowane w pliku config.py.
 
+Dla Windows 11 i karty GeForce RTX polecam Python 3.12.7 oraz Cuda 12.4.1
+
 Sposób użycia:
 
 python trener.py model lalka
